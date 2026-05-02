@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  maddy:
+    image: elswork/maddy:latest
+    container_name: maddy
+    restart: unless-stopped
+    ports:
+      - "25:25"
+      - "143:143"
+      - "465:465"
+      - "587:587"
+      - "993:993"
+    environment:
+      - MADDY_HOSTNAME=${MADDY_HOSTNAME:-mail.dl4.eu}
+      - MADDY_DOMAIN=${MADDY_DOMAIN:-dl4.eu}
+    volumes:
+      - ./maddy_data:/data
